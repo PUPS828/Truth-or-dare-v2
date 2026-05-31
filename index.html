@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Truth or Dare · NEXUS</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+
+<!-- ══ SETUP SCREEN ══ -->
+<div class="screen active" id="screenSetup">
+  <div style="text-align:center;margin-bottom:18px;">
+    <div class="tag-line">NEXUS PROTOCOL · v2.0</div>
+    <h1>TRUTH OR DARE</h1>
+    <div class="sub">Configure your session</div>
+  </div>
+
+  <div class="setup-box">
+    <div class="section-label">▸ Players</div>
+    <div class="player-list" id="playerList"></div>
+    <div class="btn-row">
+      <button class="add-btn" onclick="addPlayer()">+ ADD PLAYER</button>
+      <button class="remove-btn" onclick="removePlayer()">− REMOVE</button>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="rounds-row">
+      <div class="rounds-label">ROUNDS PER PLAYER</div>
+      <div class="rounds-control">
+        <button class="rounds-btn" onclick="changeRounds(-1)">−</button>
+        <div class="rounds-val" id="roundsVal">10</div>
+        <button class="rounds-btn" onclick="changeRounds(1)">+</button>
+      </div>
+    </div>
+
+    <button class="start-btn" id="startBtn" onclick="startGame()" disabled>⟶ INITIATE GAME</button>
+  </div>
+</div>
+
+<!-- ══ GAME SCREEN ══ -->
+<div class="screen" id="screenGame">
+  <!-- HUD -->
+  <div class="hud">
+    <div class="hud-block">
+      <div class="hud-label">PLAYER</div>
+      <div class="hud-val hud-player" id="hudPlayer">—</div>
+    </div>
+    <div class="hud-block">
+      <div class="hud-label">ROUND</div>
+      <div class="hud-val" id="hudRound">—</div>
+    </div>
+    <div class="hud-block">
+      <div class="hud-label">TOTAL</div>
+      <div class="hud-val" id="hudTotal">—</div>
+    </div>
+  </div>
+
+  <!-- round progress dots -->
+  <div class="round-dots" id="roundDots"></div>
+
+  <!-- wheel -->
+  <div class="wheel-wrapper">
+    <div class="wheel-ring"></div>
+    <div class="wheel-ring-2"></div>
+    <div class="pointer"></div>
+    <canvas id="wheel" width="310" height="310"></canvas>
+    <button class="spin-btn" id="spinBtn">SPIN</button>
+  </div>
+
+  <!-- result -->
+  <div class="result-area">
+    <div class="result-card" id="resultCard">
+      <div class="sweep"></div>
+      <div class="result-type-badge">
+        <div class="result-dot"></div>
+        <div class="result-label" id="resultLabel"></div>
+        <div class="result-dot"></div>
+      </div>
+      <div class="result-divider"></div>
+      <div class="result-text" id="resultText"></div>
+      <button class="next-btn" id="nextBtn" onclick="nextTurn()">▸ NEXT TURN</button>
+    </div>
+  </div>
+  <p class="tap-hint" id="tapHint">[ TAP WHEEL OR PRESS SPIN ]</p>
+</div>
+
+<!-- ══ END SCREEN ══ -->
+<div class="screen" id="screenEnd">
+  <div style="text-align:center;margin-bottom:18px;">
+    <div class="tag-line">SESSION COMPLETE</div>
+    <h1>TRUTH OR DARE</h1>
+    <div class="sub">Game over · Final scores</div>
+  </div>
+  <div class="end-box">
+    <div class="end-title">MISSION COMPLETE</div>
+    <div class="end-sub">ALL ROUNDS FINISHED</div>
+    <div class="scoreboard" id="scoreboard"></div>
+    <button class="play-again-btn" onclick="playAgain()">↺ PLAY AGAIN</button>
+  </div>
+</div>
+
+<div class="status-bar">
+  <span><span class="status-dot"></span>SYSTEM ONLINE</span>
+  <span id="statusInfo">NEXUS-TRUTH-DARE</span>
+  <span>READY</span>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
